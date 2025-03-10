@@ -1,5 +1,7 @@
 <?php
 
+// Based on javascript code from https://www.passport.gov.gr/passports/GrElotConverter/GrElotConverter.html
+
 class GreeklishConverter
 {
     private $grCaps;
@@ -146,13 +148,13 @@ if (is_null($greekText)) {
     header('HTTP/1.0 406 Not Acceptable');
 }
 else {
-    $greeklishText = $converter->toGreeklish($greekText);
+    $elot743Text = $converter->toGreeklish($greekText);
     if (!isset($_GET['json'])) {
         header('Content-Type: text/plain; charset=utf-8');
-        echo $greeklishText;
+        echo $elot743Text;
     }
     else {
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(['greektext'=>$greekText, 'greeklish'=>$greeklishText], JSON_UNESCAPED_UNICODE);
+        echo json_encode(['greektext'=>$greekText, 'elot743text'=>$elot743Text], JSON_UNESCAPED_UNICODE);
     }
 }
